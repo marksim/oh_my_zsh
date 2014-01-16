@@ -35,3 +35,7 @@ alias sl=ls # often screw this up
 alias afind='ack-grep -il'
 
 alias vi="mvim -v"
+
+alias gpr="git pull --rebase"
+alias gcm="git commit -m"
+alias gaa="git add ."

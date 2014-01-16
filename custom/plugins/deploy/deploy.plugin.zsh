@@ -1,14 +1,29 @@
 deploy() { 
-  if [ "$1" != "" ]
+  if [[ -n $(git remote -v | grep heroku) ]]
   then
-    if [ "$2" != "" ]
+    if [ "$1" != "production" ]
     then
-      git push && RUBBER_ENV=$1 BRANCH=$2 cap deploy:migrations 
+      if [ "$1" != "" ]
+      then
+        git push origin && git push $1 $1:master
+      else
+        git push origin && git push staging staging:master
+      fi 
     else
-      git push && RUBBER_ENV=$1 cap deploy:migrations 
-    fi 
+      git push origin && git push production
+    fi
   else
-    git push && RUBBER_ENV=production cap deploy:migrations 
+    if [ "$1" != "" ]
+    then
+      if [ "$2" != "" ]
+      then
+        git push && RUBBER_ENV=$1 BRANCH=$2 cap deploy:migrations 
+      else
+        git push && RUBBER_ENV=$1 cap deploy:migrations 
+      fi 
+    else
+      git push && RUBBER_ENV=production cap deploy:migrations 
+    fi
   fi
 }
 
