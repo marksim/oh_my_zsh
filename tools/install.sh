@@ -10,11 +10,7 @@ if [ -d "$ZSH" ]; then
 fi
 
 echo "\033[0;34mCloning Oh My Zsh...\033[0m"
-<<<<<<< HEAD
-hash git >/dev/null 2>&1 && /usr/bin/env git clone https://github.com/marksim/oh-my-zsh.git $ZSH || {
-=======
 hash git >/dev/null && /usr/bin/env git clone git@github.com:marksim/oh-my-zsh.git ~/.oh-my-zsh || {
->>>>>>> Updates install.sh to use the marksim branch
   echo "git not installed"
   exit
 }
